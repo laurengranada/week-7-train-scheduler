@@ -42,5 +42,8 @@ p {
 }
 /*end of css for clock animation*/
 
+th, tr, p, label, h3 {
+  font-family: 'Share Tech Mono', monospace;
+}
 
 
