@@ -23,7 +23,7 @@ $("#add-train").on("click", function() {
 
 Train = $("#train-input").val().trim();
 Destination = $("#destination-input").val().trim();
-firstTime = $("#time-input").val().trim();
+firstTime = moment($("#time-input").val().trim(), "HH:mm").subtract(10, "years").format("X");
 Frequency = $("#frequency-input").val().trim();
 
 	// Push
@@ -56,9 +56,9 @@ $("#frequency-input").val("");
   // storing into variables
   var tTrain = childSnapshot.val().Train;
   var tDestination = childSnapshot.val().Destination;
-  var tFirstTime = childSnapshot.val().firstTime;
   var tFrequency = childSnapshot.val().Frequency;
- 
+  var tFirstTime = childSnapshot.val().firstTime;
+
  // calculate the frequency time
 var differenceInTime = moment().diff(moment.unix(tFirstTime), "minutes");
 var tRemainder = moment().diff(moment.unix(tFirstTime), "minutes") % tFrequency;
@@ -70,7 +70,7 @@ var tArrival = moment().add(tMinutes, "m").format("hh:mm A");
 console.log(tMinutes);
 
 // add train data to html table
-$("#Schedule > tbody").append("<tr><td>" + tTrain + "</td><td>" + tDestination + "</td><td>" + tFrequency + "</td><td>" + tArrival + "</td><td>" + tMinutes + "</td><td>");
+$("#Schedule > tbody").append("<tr><td>" + tTrain + "</td><td>" + tDestination + "</td><td>" + tFrequency + " min</td><td>" + tArrival + "</td><td>" + tMinutes + "</td></tr>");
 
 // Errors
 // }, function(errorObject) {
